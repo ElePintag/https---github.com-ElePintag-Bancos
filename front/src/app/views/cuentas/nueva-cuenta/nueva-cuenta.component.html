@@ -1,0 +1,57 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="provedor" (ngSubmit)="grabar()">
+      <div class="mb-2">
+        <label for="ID_banco">Banco</label>
+        <select class="form-control" formControlName="ID_banco">
+          <option value="0">Seleccione una opción</option>
+          @for (banco of listaBancos; track banco.ID_banco) {
+          <option [value]="banco.ID_banco">{{ banco.Nombre }}</option>
+          }
+        </select>
+
+        @if (provedor.invalid && (provedor.dirty || provedor.touched)) {
+        <div class="alert">
+          @if (provedor.errors?.["required"]) {
+          <div class="ng-invalid">El ID es requerido</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="mb-2">
+        <label for="Tipo_cuenta">Tipo de cuenta</label>
+        <input type="text" class="form-control" formControlName="Tipo_cuenta" />
+        @if (provedor.invalid && (provedor.dirty || provedor.touched)) {
+        <div class="alert">
+          @if (provedor.errors?.["required"]) {
+          <div class="ng-invalid">El tipo de cuenta es requerido</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="mb-2">
+        <label for="Saldo">Saldo</label>
+        <input type="text" class="form-control" formControlName="Saldo" />
+        @if (provedor.invalid && (provedor.dirty || provedor.touched)) {
+        <div class="alert">
+          @if (provedor.errors?.["required"]) {
+          <div class="ng-invalid">El saldo es requerido</div>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="mb-2">
+        <button type="submit" class="btn btn-primary">
+          Grabar
+        </button>
+        <button class="btn btn-secondary" routerLink="/cuentas">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

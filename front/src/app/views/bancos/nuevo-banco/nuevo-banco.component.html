@@ -1,0 +1,51 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="provedor" (ngSubmit)="grabar()">
+      <div class="mb-2">
+        <label for="Nombres">Nombres</label>
+        <input type="text" class="form-control" formControlName="Nombre" />
+        @if (provedor.invalid && (provedor.dirty || provedor.touched)) {
+        <div class="alert">
+          @if (provedor.errors?.["required"]) {
+          <div class="ng-invalid">Nombres es requerido</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="mb-2">
+        <label for="Ciudad">Ciudad</label>
+        <input type="text" class="form-control" formControlName="Ciudad" />
+        @if (provedor.invalid && (provedor.dirty || provedor.touched)) {
+        <div class="alert">
+          @if (provedor.errors?.["required"]) {
+          <div class="ng-invalid">La ciudad es requerido</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="mb-2">
+        <label for="Numero_cuentas">Nuemero de Cuentas</label>
+        <input type="text" class="form-control" formControlName="Numero_cuentas" />
+        @if (provedor.invalid && (provedor.dirty || provedor.touched)) {
+        <div class="alert">
+          @if (provedor.errors?.["required"]) {
+          <div class="ng-invalid">El numero de cuenta es requerido</div>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="mb-2">
+        <button type="submit" class="btn btn-primary">
+          Grabar
+        </button>
+        <button class="btn btn-secondary" routerLink="/bancos">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
